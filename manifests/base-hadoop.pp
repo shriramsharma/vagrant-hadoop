@@ -1,3 +1,4 @@
+include hadoop
 group { "puppet":
   ensure => "present",
 }
