@@ -27,13 +27,30 @@ exec { "adding_permission_to_tmp_dir":
   require => Exec["adding_permission_to_tmp_dir"]
 }
 
-file { "${hadoop_home}-1.1.2/conf/core-site.xml"
-   source => "puppet:///modules/hadoop/core-site.xml"
+file { "${hadoop_home}-1.1.2/conf/core-site.xml":
+    source => "puppet:///modules/hadoop/core-site.xml",
+    mode => 644,
+    owner => root,
+    group => root,
+    require => Exec["unpack_hadoop"]
+
 }
-file { "${hadoop_home}-1.1.2/conf/hdfs-site.xml"
-   source => "puppet:///modules/hadoop/hdfs-site.xml"
-}file { "${hadoop_home}-1.1.2/conf/mapred-site.xml"
-   source => "puppet:///modules/hadoop/mapred-site.xml"
+
+file { "${hadoop_home}-1.1.2/conf/hdfs-site.xml":
+    source => "puppet:///modules/hadoop/hdfs-site.xml",
+    mode => 644,
+    owner => root,
+    group => root,
+    require => File["${hadoop_home}-1.1.2/conf/core-site.xml"]
+
 }
+
+file { "${hadoop_home}-1.1.2/conf/mapred-site.xml":
+    source => "puppet:///modules/hadoop/mapred-site.xml",
+    mode => 644,
+    owner => root,
+    group => root,
+    require => File["${hadoop_home}-1.1.2/conf/hdfs-site.xml"]
+  }
 
 }
