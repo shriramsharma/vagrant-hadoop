@@ -1,5 +1,5 @@
 Vagrant Hadoop
-==============
+==================
 
 The objective of this  project was to have a fully functional single node hadoop cluster up and running with a single vagrant up command.
 
