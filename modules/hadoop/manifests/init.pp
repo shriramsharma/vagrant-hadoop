@@ -27,6 +27,15 @@ exec { "adding_permission_to_tmp_dir":
   require => Exec["adding_permission_to_tmp_dir"]
 }
 
+file { "${hadoop_home}-1.1.2/conf/hadoop-env.sh":
+    source => "puppet:///modules/hadoop/hadoop-env.sh",
+    mode => 644,
+    owner => root,
+    group => root,
+    require => Exec["unpack_hadoop"]
+
+}
+
 file { "${hadoop_home}-1.1.2/conf/core-site.xml":
     source => "puppet:///modules/hadoop/core-site.xml",
     mode => 644,
