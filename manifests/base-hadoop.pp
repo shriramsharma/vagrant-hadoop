@@ -11,3 +11,8 @@ package { "openjdk-6-jdk":
   ensure => "present",
   require => Exec["apt-get update"],
 }
+
+package { "vim":
+  ensure => "present",
+  require => Exec["apt-get update"],
+}
